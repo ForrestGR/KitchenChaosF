@@ -25,9 +25,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+
         rb = GetComponent<Rigidbody>(); //mein quatsch        
     }
 
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void Update()
     {
