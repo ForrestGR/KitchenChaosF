@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -7,14 +8,22 @@ public class Player : MonoBehaviour
 {
     //Variables
     [SerializeField] private float moveSpeed = 7f;
+
+    //Konstruktor
     [SerializeField] private GameInput gameInput;
+
+    //LayerMask
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private LayerMask weaponsLayerMask;   //lamo
 
     //Accessors
     private bool isWalking;
 
+    //InstanzVariable
     private Vector3 lastInteractDir;
+
+    private ClearCounter selectedCounter;
+
 
 
     //Mein Quatsch
@@ -25,7 +34,20 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //EventListener aus der GameInput Klasse, listen on Start, not in awake
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+
         rb = GetComponent<Rigidbody>(); //mein quatsch        
+    }
+
+    //Eventlistener Methode, hier was das event ballern soll, aus der EventHandler meethode, we get the interaction - go into the object - and trigger the Interact
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        if (selectedCounter !=  null)
+        {
+            selectedCounter.Interact();
+        }
+
     }
 
 
@@ -115,19 +137,32 @@ public class Player : MonoBehaviour
         float interactDistance = 2f;
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))      //Raycast hitted das erste object welches es trifft und gibt einen bool zurück, raycastall gibt ein array zurück mit allem gehitteten
         {                                                                                                                              //oder nutze raycast mit layermask und smash nur die objecte die die gleiche layermask haben
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))                            
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                //Has ClearCounter
-                clearCounter.Interact();                                                                                            
-            }                                                                                                   
+                //Has ClearCounter //Check if different
+                if (clearCounter != selectedCounter)
+                {
+                    selectedCounter = clearCounter;
+                }
+                //clearCounter.Interact();
+            }
+            else    //if there is something, but it doesnt have the clearcounter script
+            {
+                selectedCounter = null; 
+            }
+        } else  //if raycast doesnt hit anything
+        {
+            selectedCounter = null;
         }
+
+        Debug.Log(selectedCounter);
 
 
         if (Physics.Raycast(transform.position, lastInteractDir, out raycastHit, interactDistance, weaponsLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out AK47 aK47))
             {
-                aK47.Interact();
+                //aK47.Interact();
             }
         }
 
@@ -142,8 +177,6 @@ public class Player : MonoBehaviour
         {
             return isWalking;
         }
-
-
     public bool IsRunning()
         {
             return isRunning;
