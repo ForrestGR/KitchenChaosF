@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
         {
             if (raycastHit.transform.TryGetComponent(out AK47 aK47))
             {
-                //aK47.Interact();
+                aK47.Interact();
             }
         }
 
