@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+
     //Variables
     [SerializeField] private float moveSpeed = 7f;
 
@@ -24,7 +26,20 @@ public class Player : MonoBehaviour
 
     private ClearCounter selectedCounter;
 
+    //Events
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
 
+    //c# properties
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     //Mein Quatsch
     private bool isRunning;
@@ -142,20 +157,19 @@ public class Player : MonoBehaviour
                 //Has ClearCounter //Check if different
                 if (clearCounter != selectedCounter)
                 {
-                    selectedCounter = clearCounter;
+                    SetSelectedCounter(clearCounter);
                 }
                 //clearCounter.Interact();
             }
             else    //if there is something, but it doesnt have the clearcounter script
             {
-                selectedCounter = null; 
+                SetSelectedCounter(null);
             }
         } else  //if raycast doesnt hit anything
         {
-            selectedCounter = null;
+            SetSelectedCounter(null);
         }
 
-        Debug.Log(selectedCounter);
 
 
         if (Physics.Raycast(transform.position, lastInteractDir, out raycastHit, interactDistance, weaponsLayerMask))
@@ -169,9 +183,6 @@ public class Player : MonoBehaviour
 
     }
 
-
-
-
     //Accessors
     public bool IsWalking()
         {
@@ -182,6 +193,17 @@ public class Player : MonoBehaviour
             return isRunning;
         }
 
+
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+
+        OnSelectedCounterChanged?.Invoke(this.selectedCounter, new OnSelectedCounterChangedEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
+    }
 
 
 
