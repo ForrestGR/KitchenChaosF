@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>(); //mein quatsch        
     }
 
-    //Eventlistener Methode, hier was das event ballern soll, aus der EventHandler meethode, we get the interaction - go into the object - and trigger the Interact
+    //Eventlistener Methode, hier was das event ballern soll, aus der EventHandler meethode, we get the interaction - go into the object - and trigger the Interact 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
         if (selectedCounter !=  null)
