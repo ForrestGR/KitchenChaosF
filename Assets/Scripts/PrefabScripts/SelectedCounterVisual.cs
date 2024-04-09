@@ -20,7 +20,7 @@ public class SelectedCounterVisual : MonoBehaviour
             Show();
         } else
         {
-            Hide();
+            Hide(); 
         }
     }
 
