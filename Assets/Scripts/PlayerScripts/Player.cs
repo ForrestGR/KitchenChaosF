@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         public ClearCounter selectedCounter;
     }
 
-    //c# properties
+    //c# properties   
     public static Player Instance { get; private set; }
 
     private void Awake()
