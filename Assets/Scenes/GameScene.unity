@@ -1528,8 +1528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tomatoPrefab
       value: 
-      objectReference: {fileID: 6881193599145062201, guid: 946197cf903e0f34e936d7ab05ef9082,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
