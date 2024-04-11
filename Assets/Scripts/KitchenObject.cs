@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private KitchenObjectsSO kitchenObjectSO;
 
-    // Update is called once per frame
-    void Update()
+
+    public KitchenObjectsSO GetKitchenObjectsSO()
     {
-        
+        return kitchenObjectSO;
     }
 }
