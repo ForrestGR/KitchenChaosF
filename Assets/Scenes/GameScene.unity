@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -621,6 +621,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!4 &516297242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5586337012696649661, guid: a51cb2b667d06aa438746b5e7e166916,
+    type: 3}
+  m_PrefabInstance: {fileID: 1105361906475554178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &641445969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9129766245540464390, guid: e28e0886b1dfd8642a4fcdb0a720b3ad,
@@ -876,6 +882,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6927676259200188846, guid: a51cb2b667d06aa438746b5e7e166916,
+        type: 3}
+      propertyPath: kitchenObjectsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 077dbcdec90a99a40a9df5d11138ee4c,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1528,7 +1540,13 @@ PrefabInstance:
         type: 3}
       propertyPath: tomatoPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6881193599145062201, guid: 9a672873584baa742bbfd600533cee44,
+        type: 3}
+    - target: {fileID: 6927676259200188846, guid: a51cb2b667d06aa438746b5e7e166916,
+        type: 3}
+      propertyPath: counterTopPoint
+      value: 
+      objectReference: {fileID: 516297242}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
