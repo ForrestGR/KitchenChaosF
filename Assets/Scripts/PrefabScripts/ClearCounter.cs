@@ -15,10 +15,18 @@ public class ClearCounter : MonoBehaviour
     public void Interact()
     {
         //Debug.Log("Interact");
-        
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectsSO.prefab, counterTopPoint);
-        kitchenObjectTransform.localPosition = Vector3.zero;
 
+        if (kitchenObject == null)
+        {
+            Transform kitchenObjectTransform = Instantiate(kitchenObjectsSO.prefab, counterTopPoint);
+            kitchenObjectTransform.localPosition = Vector3.zero;
+
+            kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+            kitchenObject.SetClearCounter(this);
+        } else
+        {
+            Debug.Log(kitchenObject.GetClearCounter());
+        }
         //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectsSO());
 
     }
