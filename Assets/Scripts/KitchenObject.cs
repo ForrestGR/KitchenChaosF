@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
 {
-    [SerializeField] private KitchenObjectsSO kitchenObjectSO;
+    [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
 
-    public KitchenObjectsSO GetKitchenObjectsSO()
+    public KitchenObjectSO GetKitchenObjectsSO()
     {
         return kitchenObjectSO;
     }
