@@ -7,7 +7,7 @@ public class ClearCounter : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectsSO;
     [SerializeField] private Transform counterTopPoint;
-
+    [SerializeField] private ClearCounter secondClearCounter;
 
     private KitchenObject kitchenObject;
 
@@ -29,5 +29,10 @@ public class ClearCounter : MonoBehaviour
         }
         //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectsSO());
 
+    }
+
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return counterTopPoint;
     }
 }
