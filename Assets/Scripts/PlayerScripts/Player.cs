@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
 
     //Variables
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     //LayerMask
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private LayerMask weaponsLayerMask;   //lamo
+    [SerializeField] private Transform kitchenObjectHoldPoint;
 
     //Accessors
     private bool isWalking;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     private Vector3 lastInteractDir;
 
     private ClearCounter selectedCounter;
+    private KitchenObject kitchenObject;
 
     //Events
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
     {
         if (selectedCounter !=  null)
         {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
 
     }
@@ -244,6 +246,34 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
      }
 
+
+
+    //Interface Functions
+
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return kitchenObjectHoldPoint;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return kitchenObject != null;
+    }
 }
 
 
